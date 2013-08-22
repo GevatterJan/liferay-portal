@@ -60,7 +60,7 @@ ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(company.
 	String localizedName = LanguageUtil.get(pageContext, name);
 
 	if (name.equals(localizedName)) {
-		localizedName = TextFormatter.format(name, TextFormatter.J);
+		localizedName = HtmlUtil.escape(TextFormatter.format(name, TextFormatter.J));
 	}
 
 	Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
@@ -580,7 +580,7 @@ ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(company.
 									for (String curDefaultValue : (String[])defaultValue) {
 									%>
 
-										<input <%= ((curValue.length > 0) && ArrayUtil.contains(curValue, curDefaultValue)) ? "checked" : "" %> name="<portlet:namespace />ExpandoAttribute--<%= escapedName %>--" type="checkbox" value="<%= curDefaultValue %>"><%= curDefaultValue %></input><br />
+										<input <%= ((curValue.length > 0) && ArrayUtil.contains(curValue, curDefaultValue)) ? "checked" : "" %> name="<portlet:namespace />ExpandoAttribute--<%= escapedName %>--" type="checkbox" value="<%= HtmlUtil.escapeAttribute(curDefaultValue) %>"><%= HtmlUtil.escape(curDefaultValue) %></input><br />
 
 									<%
 									}
@@ -595,7 +595,7 @@ ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(company.
 									for (String curDefaultValue : (String[])defaultValue) {
 									%>
 
-										<input <%= ((curValue.length > 0) && ArrayUtil.contains(curValue, curDefaultValue)) ? "checked" : "" %> name="<portlet:namespace />ExpandoAttribute--<%= escapedName %>--" type="radio" value="<%= curDefaultValue %>"><%= curDefaultValue %></input><br />
+										<input <%= ((curValue.length > 0) && ArrayUtil.contains(curValue, curDefaultValue)) ? "checked" : "" %> name="<portlet:namespace />ExpandoAttribute--<%= escapedName %>--" type="radio" value="<%= HtmlUtil.escapeAttribute(curDefaultValue) %>"><%= HtmlUtil.escape(curDefaultValue) %></input><br />
 
 									<%
 									}
